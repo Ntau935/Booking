@@ -1,4 +1,4 @@
- /*
+ 
       // Get user input values
 const name_ = document.getElementById('name').value;
 const email_ = document.getElementById('email').value;
@@ -140,4 +140,4 @@ stripe.addEventListener('click', () => {
                 console.error("EmailJS Error:", error);
             }
         );
-});*/
+});
