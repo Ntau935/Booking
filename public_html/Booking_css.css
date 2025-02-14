@@ -65,7 +65,52 @@ header nav ul li a:hover {
     background: black;
     border-radius: 5px;
 }
+/* Mobile Navigation */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
 
+/* Hide menu by default on mobile */
+.nav-menu {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        background: black;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        text-align: center;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-menu ul li {
+        display: block;
+        padding: 10px;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+}
 /* Hero Section */
 .hero {
     position: relative;
