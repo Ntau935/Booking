@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .payment-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .payment-method:hover {
+            background-color: #f9f9f9;
+        }
+        .payment-method img {
+            width: 40px;
+            margin-right: 10px;
+        }
+        .payment-method span {
+            font-size: 16px;
+        }
+        #payment-form {
+            display: none;
+            margin-top: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #confirmation {
+            display: none;
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="payment-container">
+        <h1>Choose Payment Method</h1>
+
+        <!-- Apple Pay -->
+        <div class="payment-method" id="apple-pay">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Apple_pay_logo.png" alt="Apple Pay">
+            <span>Apple Pay</span>
+        </div>
+
+        <!-- Google Pay -->
+        <div class="payment-method" id="Stripe">
+            <img src="" alt="Stripe">
+            <span>Stripe</span>
+        </div>
+         <!-- Google Pay -->
+        <div class="payment-method" id="PayPal">
+            <img src="" alt="PayPal">
+            <span>PayPal</span>
+        </div>
+          <!-- Google Pay -->
+        <div class="payment-method" id="Flutterwave">
+            <img src="" alt="Flutterwave">
+            <span>Flutterwave</span>
+        </div>
+<div class="payment-method" id="Ozow_pay">
+            <img src="" alt="Ozow_pay">
+            <span>OZOW pay</span>
+        </div>
+        <!-- Credit/Debit Card -->
+        <div class="payment-method" id="credit-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Credit/Debit Card">
+            <span>Credit/Debit Card</span>
+        </div>
+
+        <!-- Payment Form -->
+        <form id="payment-form">
+            <input type="text" id="card-number" placeholder="Card Number" required>
+            <input type="text" id="expiry-date" placeholder="Expiry Date (MM/YY)" required>
+            <input type="text" id="cvv" placeholder="CVV" required>
+            <button type="submit">Pay Now</button>
+        </form>
+
+        <!-- Confirmation Message -->
+        <div id="confirmation">Payment Successful!</div>
+    </div>
+
+    <script src="Payment_Script.js"> </script>
+
+</body>
+</html>

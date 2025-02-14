@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Avant-Garde</title>
+    <link rel="stylesheet" href="Booking_css.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="Gallery/Logo.jpeg" alt="Logo" />
+                <h1>Avant-Garde</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Booking</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="video-background">
+            <video autoplay muted loop>
+                <source src="Gallery/lgoV.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-text">
+            <h2>Welcome to a New Era of Nightlife</h2>
+            <p>The premier nightlife experience. Founded with a passion for exceptional nightlife.</p>
+            <p>We're dedicated to curating unforgettable events experiences in</p> 
+            <p>the heart of the city.</p>
+            <a href="#services" class="btn">BOOK YOUR SEAT</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h1>BOOK YOUR SEAT</h1>
+            <form id="bookingForm">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+                <label for="number">Phone Number:</label>
+                <input type="tel" id="number" name="number" required placeholder="Enter your phone number">
+
+                <label for="category">Category of Venue:</label>
+                <select id="category" name="category" required>
+                    <option value="">--Select Place--</option>
+                    <option value="accessible">Accessible and Affordable Venues</option>
+                    <option value="midrange">Mid-Range Venues</option>
+                    <option value="luxury">Luxury and Exclusive Venues</option>
+                </select>
+
+                <label for="venue">Specific Venue:</label>
+                <select id="venue" name="venue" required>
+                    <option value="">--Select a Venue--</option>
+                </select>
+
+                  <label for="seating-options">Choose Seating:</label>
+                  <select id="seating-options" name="seating-options">
+                  <option value="">--seating-options--</option>
+                 <option value="VIP">VIP - R200</option>
+                <option value="Lounge">Lounge - R100</option>
+                <option value="General">General - R50</option>
+                </select>
+                <label for="date">Booking Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Time:</label>
+                <input type="time" id="time" name="time" required>
+
+                <button type="submit">Submit Booking</button>
+            </form>
+            <p id="successMessage" class="success-message" style="display: none;">Booking successful!</p>
+        </div>
+    </section>
+      
+
+    <!-- About Us Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="text-content">
+                <h2>About Us</h2>
+                <p>Welcome to AVANT-GARDE’s premier nightlife experience. Founded with a passion for exceptional nightlife,</p>
+                <p>we’re dedicated to curating unforgettable events, exclusive access, and personalized experiences in the</p>
+                <p>heart of the city. From elite venues to unique offerings, we combine sophistication with the vibrant</p>
+                <p>energy of Joburg, providing our clients with top-tier entertainment and unparalleled service.</p>
+                <p>Join us as we redefine nightlife, bringing you closer to the extraordinary moments that matter most.</p>
+            </div>
+            <div class="image-content">
+                <img src="Gallery/about_pic.png" alt="Nightlife Experience" />
+            </div>
+        </div>
+    </section>
+   
+ <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+        <pre>
+            
+
+        </pre>
+    </section>
+ 
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h2>Address</h2>
+                <p>E1082 Masosobane,</p>
+                <p>Phokeng, North West, 0335</p>
+            </div>
+            <div>
+                <h2>Contact</h2>
+                <p>Mobile: 0714667927</p>
+                <p>Email: <a href="mailto:setshedirebone@gmail.com">setshedirebone@gmail.com</a></p>
+            </div>
+            <div>
+                <h2>Social Media</h2>
+                <p><a href="https://facebook.com" target="_blank">Facebook</a></p>
+                <p><a href="https://twitter.com" target="_blank">Twitter</a></p>
+                <p><a href="https://instagram.com" target="_blank">Instagram</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AVANT-GARDE. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+     <script>
+        // Data for the second dropdown
+        const venueOptions = {
+            accessible: [
+                { value: "Drama Bar, Hatfield654321`7", text: "Drama Bar, Hatfield, Pretoria, GP",date: "2025-02-14", time: "18:00" },
+                { value: "Drama Bar, Braamfontein", text: "Drama Bar, Braamfontein, Johannesburg, GP",date: "2025-02-15", time: "18:00" },
+                { value: "The Cosmopolitan Lounge, Maboneng, Johannesburg, GP", text: "The Cosmopolitan Lounge, Maboneng, Johannesburg, GP",date: "2025-02-16", time: "18:00" }
+              ],
+            midrange: [
+                { value: "Montana Club, Rosebank, Johannesburg, GP", text: "Montana Club, Rosebank, Johannesburg, GP",date: "2025-02-16", time: "18:00" },
+                { value: "Nostra Club, Bryanston, Johannesburg, GP", text: "Nostra Club, Bryanston, Johannesburg, GP",date: "2025-02-14", time: "18:00" },
+                { value: "Cacoon Lounge, Sandton, Johannesburg, GP", text: "Cacoon Lounge, Sandton, Johannesburg, GP",date: "2025-02-15", time: "18:00" },
+                { value: "Monarch Club, Sandton, Johannesburg, GP", text: "Monarch Club, Sandton, Johannesburg, GP",date: "2025-02-16", time: "18:00"},
+                { value: "Vibes On Main Restaurant, Sandton, Johannesburg, GP", text: "Vibes On Main Restaurant, Sandton, Johannesburg, GP",date: "2025-02-14", time: "18:00" },
+            { value: "Makubenjalo Restaurant, Soweto, Johannesburg, GP", text: "Makubenjalo Restaurant, Soweto, Johannesburg, GP",date: "2025-02-16", time: "18:00"},
+                { value: "Vogue Lounge, Tlhabane Square, Rustenburg, NW", text: "Vogue Lounge, Tlhabane Square, Rustenburg, NW",date: "2025-02-15", time: "18:00" }
+                  ],
+            luxury: [
+                { value: "Onyx Club, Sandton, Johannesburg, GP", text: "Onyx Club, Sandton, Johannesburg, GP",date: "2025-02-15", time: "18:00" },
+                { value: "Okio Luxury Lounge Club, Sandton, Johannesburg, GP", text: "Okio Luxury Lounge Club, Sandton, Johannesburg, GP",date: "2025-02-16", time: "18:00" },
+                 { value: "Bellucci Luxury Lounge, Sandton, Johannesburg, GP", text: "Bellucci Luxury Lounge, Sandton, Johannesburg, GP",date: "2025-02-15", time: "18:00" },
+                { value: "Vaagh Luxury Lounge, Sandton, Johannesburg, GP", text: "Vaagh Luxury Lounge, Sandton, Johannesburg, GP",date: "2025-02-14", time: "18:00" }
+            ]
+        };
+ 
+        const categorySelect = document.getElementById("category");
+        const venueSelect = document.getElementById("venue");
+        
+
+       categorySelect.addEventListener("change", () => {
+        const selectedCategory = categorySelect.value;
+        venueSelect.innerHTML = '<option value="">--Select a Venue--</option>';
+        
+        if (selectedCategory) {
+            venueOptions[selectedCategory].forEach(option => {
+                const opt = document.createElement("option");
+                opt.value = option.value;
+                opt.textContent = option.text;
+                venueSelect.appendChild(opt);
+            });
+            venueSelect.selectedIndex = 1;
+            venueSelect.dispatchEvent(new Event("change"));
+        }
+    });
+
+    venueSelect.addEventListener("change", () => {
+        const selectedCategory = categorySelect.value;
+        const selectedVenue = venueSelect.value;
+        
+        const venueDetails = venueOptions[selectedCategory]?.find(v => v.value === selectedVenue);
+       // if (venueDetails) {
+        //    dateInput.value = venueDetails.date;
+         //   timeInput.value = venueDetails.time;
+       // } else {
+           // dateInput.value = "";
+           // timeInput.value = "";
+     //   }
+    });
+    </script>
+    
+<!-- Include EmailJS Library -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js" type="text/javascript"></script>
+<script>
+    // Initialize EmailJS
+    emailjs.init("3mTUA_pqmyriVtDz_");
+</script>
+<script src="Payment_Script.js"></script>
+</body>
+</html>

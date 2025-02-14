@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Pay Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Apple Pay Demo</h1>
+        <button id="apple-pay-button">Pay with Apple Pay</button>
+        <p id="payment-status"></p>
+    </div>
+
+    <script>
+        const applePayButton = document.getElementById('apple-pay-button');
+        const paymentStatus = document.getElementById('payment-status');
+
+        // Check if Apple Pay is supported
+        if (window.ApplePaySession && ApplePaySession.canMakePayments()) {
+            applePayButton.style.display = 'block';
+        } else {
+            paymentStatus.textContent = 'Apple Pay is not supported on this device.';
+        }
+
+        // Handle Apple Pay button click
+        applePayButton.addEventListener('click', async () => {
+            const paymentRequest = {
+                countryCode: 'US',
+                currencyCode: 'Zar',
+                total: {
+                    label: 'Demo Payment',
+                    amount: '10.00'
+                },
+                supportedNetworks: ['visa', 'masterCard', 'amex'],
+                merchantCapabilities: ['supports3DS']
+            };
+
+            const session = new ApplePaySession(3, paymentRequest);
+
+            session.onvalidatemerchant = async (event) => {
+                // Fetch the merchant session from your backend
+                const response = await fetch('/validate-merchant', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ validationURL: event.validationURL })
+                });
+                const merchantSession = await response.json();
+                session.completeMerchantValidation(merchantSession);
+            };
+
+            session.onpaymentauthorized = (event) => {
+                // Process the payment on your backend
+                fetch('/process-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(event.payment)
+                }).then(response => {
+                    if (response.ok) {
+                        session.completePayment(ApplePaySession.STATUS_SUCCESS);
+                        paymentStatus.textContent = 'Payment successful!';
+                    } else {
+                        session.completePayment(ApplePaySession.STATUS_FAILURE);
+                        paymentStatus.textContent = 'Payment failed.';
+                    }
+                });
+            };
+
+            session.begin();
+        });
+    </script>
+
+</body>
+</html>

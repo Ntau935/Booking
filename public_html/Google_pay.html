@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Pay Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Google Pay Demo</h1>
+        <button id="google-pay-button">Pay with Google Pay</button>
+        <p id="payment-status"></p>
+    </div>
+
+    <!-- Load Google Pay API -->
+    <script src="https://pay.google.com/gp/p/js/pay.js"></script>
+
+    <script>
+        const googlePayButton = document.getElementById('google-pay-button');
+        const paymentStatus = document.getElementById('payment-status');
+
+        // Configure Google Pay
+        const baseRequest = {
+            apiVersion: 2,
+            apiVersionMinor: 0
+        };
+
+        const tokenizationSpecification = {
+            type: 'PAYMENT_GATEWAY',
+            parameters: {
+                gateway: 'example',
+                gatewayMerchantId: 'your-gateway-merchant-id'
+            }
+        };
+
+        const cardPaymentMethod = {
+            type: 'CARD',
+            parameters: {
+                allowedCardNetworks: ['VISA', 'MASTERCARD', 'AMEX'],
+                allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS']
+            },
+            tokenizationSpecification: tokenizationSpecification
+        };
+
+        const googlePayClient = new google.payments.api.PaymentsClient({
+            environment: 'TEST' // Use 'PRODUCTION' for live payments
+        });
+
+        // Check if Google Pay is available
+        googlePayClient.isReadyToPay(baseRequest).then(response => {
+            if (response.result) {
+                googlePayButton.style.display = 'block';
+            } else {
+                paymentStatus.textContent = 'Google Pay is not available.';
+            }
+        });
+
+        // Handle Google Pay button click
+        googlePayButton.addEventListener('click', () => {
+            const paymentDataRequest = {
+                ...baseRequest,
+                allowedPaymentMethods: [cardPaymentMethod],
+                transactionInfo: {
+                    totalPriceStatus: 'FINAL',
+                    totalPrice: '10.00',
+                    currencyCode: 'USD'
+                },
+                merchantInfo: {
+                    merchantName: 'Demo Merchant'
+                }
+            };
+
+            googlePayClient.loadPaymentData(paymentDataRequest).then(paymentData => {
+                // Process the payment on your backend
+                fetch('/process-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(paymentData)
+                }).then(response => {
+                    if (response.ok) {
+                        paymentStatus.textContent = 'Payment successful!';
+                    } else {
+                        paymentStatus.textContent = 'Payment failed.';
+                    }
+                });
+            }).catch(err => {
+                paymentStatus.textContent = 'Payment canceled or failed.';
+            });
+        });
+    </script>
+
+</body>
+</html>
